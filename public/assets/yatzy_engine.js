@@ -1,7 +1,7 @@
 function calculateScore(game, scoreBox) {
     switch (scoreBox) {
         case 'ones':
-            return game.diceValues.filter(value => value === 1).length;
+            return game.diceValues.filter(value => value === 1).length * 1;
         case 'twos':
             return game.diceValues.filter(value => value === 2).length * 2;
         case 'threes':
