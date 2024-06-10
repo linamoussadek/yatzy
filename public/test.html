@@ -10,5 +10,36 @@
 </head>
 <body>
 <h1>Yatzy Game Test</h1>
+<button onclick="startNewGame()">Start New Game</button>
+<button onclick="rollDiceInGame()">Roll Dice</button>
+<div id="gameState"></div>
+<script>
+    let game = new YatzyGame();
+
+    function startNewGame() {
+        game.resetGame();
+        updateGameStateDisplay();
+    }
+
+    function rollDiceInGame() {
+        if (game.currentRoll < 3) {
+            game.rollDice();
+            updateGameStateDisplay();
+        } else {
+            alert("No more rolls allowed. Start a new game.");
+        }
+    }
+
+    function updateGameStateDisplay() {
+        let gameStateDiv = document.getElementById('gameState');
+        gameStateDiv.innerHTML = `
+                <p>Current Roll: ${game.currentRoll}</p>
+                <p>Dice Values: ${game.diceValues.join(', ')}</p>
+                <p>Keep Dice: ${game.keepDice.map(keep => keep ? 'Yes' : 'No').join(', ')}</p>
+                <p>Score: ${game.score}</p>
+                <p>Bonus: ${game.bonus}</p>
+            `;
+    }
+</script>
 </body>
 </html>
